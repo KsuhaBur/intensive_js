@@ -1,7 +1,9 @@
 const restourant = 'tanuki'
 
 const renderItems = (data) => {
-    console.log(data);
+    data.forEach(element => {
+        console.log(element);
+    });
 }
 
 fetch(`./db/${restourant}.json`)
