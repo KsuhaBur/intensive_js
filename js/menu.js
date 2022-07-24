@@ -1,10 +1,10 @@
+const restourant = 'tanuki'
+
 const renderItems = (data) => {
-    data.forEach(element => {
-        console.log(element);
-    });
+    console.log(data);
 }
 
-fetch('https://test-700be-default-rtdb.firebaseio.com/db/partners.json')
+fetch(`./db/${restourant}.json`)
     .then((response) => response.json())
     .then((data) => {
         renderItems(data);
