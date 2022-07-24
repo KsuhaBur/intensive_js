@@ -7,6 +7,7 @@ const loginInForm = document.getElementById('logInForm')
 const inputLogin = document.getElementById('login')
 const inputPassword = document.getElementById('password')
 
+
 const login = (user) => {
     buttonAuth.style.display = 'none';
     buttonOut.style.display = 'flex';
@@ -15,6 +16,7 @@ const login = (user) => {
     userName.textContent = user.login;
     modalAuth.style.display = 'none';
 }
+
 
 const logout = () => {
     buttonOut.style.display = 'none';
@@ -29,9 +31,11 @@ buttonAuth.addEventListener('click', () => {
     modalAuth.style.display = 'flex';
 })
 
+
 closeAuth.addEventListener('click', () => {
     modalAuth.style.display = 'none';
 })
+
 
 buttonOut.addEventListener('click', () => {
     logout();
@@ -41,7 +45,11 @@ buttonOut.addEventListener('click', () => {
 loginInForm.addEventListener('submit', (event) => {
     event.preventDefault()
 
-    if (inputLogin.value) {
+    if (inputLogin.value.trim() == '') {
+        alert('Не введен логин');
+    } else if (inputPassword.value.trim() == '') {
+        alert('Не введен пароль');
+    } else {
         const user = {
             login: inputLogin.value,
             password: inputPassword.value
@@ -49,12 +57,11 @@ loginInForm.addEventListener('submit', (event) => {
 
         localStorage.setItem('user', JSON.stringify(user));
         login(user);
-    } else {
-        alert('Не введен логин');
     }
 
 
 })
+
 
 if (localStorage.getItem('user')) {
     login(JSON.parse(localStorage.getItem('user')));
